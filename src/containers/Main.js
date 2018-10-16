@@ -7,7 +7,6 @@ import Homepage from '../components/Homepage';
 const Main = (props) => {
     return (
         <div>
-            <h1>Main Page</h1>
             <Switch>
                 <Route exact path="/" render={()=> <Homepage />}></Route>
                 <Route path="/popular" render={()=> <Popular />}></Route>
