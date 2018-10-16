@@ -26,13 +26,11 @@ class Homepage extends Component {
                 }
                 loadHomepage = (
                     <div className="container">
-                        <h3>Today's Top Film</h3>
-                        <h1>{topMovie.title}<span>Average Rating</span></h1>
-                        <div className="row">
-                            <div className="col-md-7">
-                                <p>Brief Overview</p>
-                                <p></p>
-                            </div>
+                        <div className="text-area col-md-5">
+                            <h3>Today's Top Film</h3>
+                            <h1>{topMovie.title}</h1>
+                            <h5>Avg. Rating - {topMovie.vote_average}</h5>
+                            <p>{topMovie.overview}</p>
                         </div>
                     </div>
                 )
