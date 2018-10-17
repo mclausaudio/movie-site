@@ -14,3 +14,7 @@
   padding: .8rem;
   background-color: rgba(0, 0, 0, 0.5)
 }
+
+.poster-image {
+  width:100%;
+}

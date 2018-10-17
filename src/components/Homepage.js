@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import * as movieActions from '../store/actions/movieActions';
 import { bindActionCreators } from 'redux';
 
+import SearchBar from './SearchBar';
+
 class Homepage extends Component {
     constructor(props){
         super(props);
@@ -10,10 +12,6 @@ class Homepage extends Component {
 
     componentWillMount(){
         this.props.movieActions.fetchTopMovies();
-        
-        // axios.get('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=8767ba99f89d915e78f296b1a16b13bb')
-        // .then((res) => this.setState({topMovie: res.data.results[0]}))
-        // .catch(err => console.log(err))
     }
 
     render(){
@@ -36,9 +34,12 @@ class Homepage extends Component {
                 )
             }
         return (
-            <div className="hero" style={style}>
-                {loadHomepage}
-            </div> 
+            <div>
+                <div className="hero" style={style}>
+                    {loadHomepage}
+                </div> 
+                <SearchBar />
+            </div>
         )
     }
 }

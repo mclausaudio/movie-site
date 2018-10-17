@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import * as movieActions from '../store/actions/movieActions';
-import { bindActionCreators } from 'redux';
+import axios from 'axios'
 
 import MovieCard from './Card';
 
-class Popular extends Component {
+class SearchMovies extends Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            results: []
+        }
     }
 
     componentWillMount(){
-        this.props.movieActions.fetchTopMovies();
+        let api_key = 'api_key=8767ba99f89d915e78f296b1a16b13bb';
+        let api_search = `https://api.themoviedb.org/3/search/movie?query=${this.props.match.params.title}&${api_key}`
+
+        axios.get(api_search)
+        .then(response => this.setState({results: response.data.results}))
+        .catch(err => console.log(err));
     }
 
     render(){
-        let { topMovies } = this.props
+        let { results } = this.state
         let movieCards = (<h1>Loading...</h1>);
-            if (this.props.topMovies.length > 0) {
-                movieCards = topMovies.map(m => {
+
+            if (this.state.results.length > 0) {
+                movieCards = results.map(m => {
                     return <MovieCard 
                                 key={m.id}
                                 id={m.id}
@@ -41,17 +49,4 @@ class Popular extends Component {
     }
 }
 
-function mapStateToProps(state){
-    return {
-        topMovies: state.moviesReducer
-    }
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        movieActions: bindActionCreators(movieActions, dispatch)
-    }
-}
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Popular);
+export default SearchMovies;
