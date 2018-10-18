@@ -20,13 +20,13 @@ class SearchBar extends Component {
     render(){
         let searchRoute = `/${this.state.searchText}`
         let style={
-            width: '100%'
+            width: '60%'
         }
         return (
-            <div class="input-group">
-                <div class="input-group-append">
-                    <form>
-                        <label>Search Movies:
+            <div className="input-group">
+                {/* <div class="input-group-append"> */}
+                    <form style={style} className=" navbar-expanded-md navbar">
+                        <label style={style}>Search Movies:
                             <input 
                                 type="text" 
                                 value={this.state.searchText} 
@@ -35,11 +35,11 @@ class SearchBar extends Component {
                                 style={style}
                             />
                         </label>
-                        
+
                             <Link className='btn btn-outline-secondary' to={searchRoute} >Click here to search</Link>
                         
                     </form>
-                </div>
+                {/* </div> */}
             </div>
         )
     }
